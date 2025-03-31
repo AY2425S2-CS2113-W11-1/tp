@@ -10,6 +10,8 @@ public abstract class Instrument {
 
     private boolean isRented = false;
 
+    private int usage = 0;
+
     public abstract String playInstrument();
 
 
@@ -31,5 +33,13 @@ public abstract class Instrument {
 
     public String toFileEntry() {
         return name + " | " + model + " | " + year + " | " + (isRented ? "X" : "O");
+    }
+    
+    public int getUsage() {
+        return usage;
+    }
+
+    public void incrementUsage(){
+        usage++;
     }
 }
