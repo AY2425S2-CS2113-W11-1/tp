@@ -1,6 +1,8 @@
 package instrument;
 
 import java.util.ArrayList;
+
+import exceptions.NegativeUsageException;
 import ui.Ui;
 import exceptions.EmptyDescriptionException;
 
@@ -30,7 +32,7 @@ public class InstrumentList {
         assert usage >= 0 && usage <= 100 : "Invalid usage: " + usage;
 
         if (instrument.isBlank() || model.isBlank()) {
-            throw new EmptyDescriptionException("event");
+            throw new EmptyDescriptionException("instrument or model is empty");
         }
 
         try {
@@ -56,7 +58,12 @@ public class InstrumentList {
             return;
         }
 
-        instruments.get(numberOfInstruments - 1).setUsage(usage);
+        try{
+            instruments.get(numberOfInstruments - 1).setUsage(usage);
+        } catch (NegativeUsageException e){
+            System.out.println(e.getMessage());
+        }
+
 
     }
 

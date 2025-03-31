@@ -1,5 +1,7 @@
 package instrument;
 
+import exceptions.NegativeUsageException;
+
 public abstract class Instrument {
 
     public String name;
@@ -39,7 +41,11 @@ public abstract class Instrument {
         return usage;
     }
 
-    public void setUsage(int usage) {
+    public void setUsage(int usage) throws NegativeUsageException {
+        if (usage<0){
+            throw new NegativeUsageException("Usage set is "+usage+". ");
+        }
+
         this.usage = usage;
     }
 
