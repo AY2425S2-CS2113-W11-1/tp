@@ -24,7 +24,10 @@ public class InstrumentList {
         String instrument = userInput[0];
         String model = userInput[1];
         int year = Integer.parseInt(userInput[2]);
+        int usage = Integer.parseInt(userInput[3]);
+
         assert year >= 1600 && year <= currYEAR : "Invalid year: " + year;
+        assert usage >= 0 && usage <= 100 : "Invalid usage: " + usage;
 
         if (instrument.isBlank() || model.isBlank()) {
             throw new EmptyDescriptionException("event");
@@ -46,10 +49,15 @@ public class InstrumentList {
                 break;
             default:
                 System.out.println("invalid instrument");
+                return;
             }
         } catch (EmptyDescriptionException e) {
             System.out.println(e.getMessage());
+            return;
         }
+
+        instruments.get(numberOfInstruments - 1).setUsage(usage);
+
     }
 
     public void deleteInstrument(int number) {
@@ -82,6 +90,7 @@ public class InstrumentList {
         //        if (userInput.equals("Y")) {
         System.out.println("Reserving instrument: " + instToRent);
         instToRent.rent();
+        instToRent.incrementUsage();
         //        } else {
         //            System.out.println("Reserve cancelled");
         //        }

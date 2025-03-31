@@ -13,6 +13,7 @@ public class AddInstrumentCommand extends Command {
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, Parser parser) {
         try {
+            this.Name += "|0";
             instrumentList.addInstrument(commandParser.separateNMY(this.Name.trim()));
             ui.printInstrumentList(instrumentList.getList());
         } catch (Exception e) {

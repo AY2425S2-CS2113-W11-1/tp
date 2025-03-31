@@ -32,11 +32,15 @@ public abstract class Instrument {
     }
 
     public String toFileEntry() {
-        return name + " | " + model + " | " + year + " | " + (isRented ? "X" : "O");
+        return name + " | " + model + " | " + year + " | " + (isRented ? "X" : "O") + " | " + usage;
     }
-    
+
     public int getUsage() {
         return usage;
+    }
+
+    public void setUsage(int usage) {
+        this.usage = usage;
     }
 
     public void incrementUsage(){
